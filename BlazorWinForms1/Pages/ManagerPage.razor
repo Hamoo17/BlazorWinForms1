@@ -9,7 +9,7 @@
 @using SiteModels.Response
 @inject IJSRuntime JS
 @implements IDisposable
-<h1>New Test</h1>
+ 
 <MudPaper Class="pb-10">
     <EditForm Model="Model" OnValidSubmit="@(async (e)=> await table.ReloadServerData())">
         <MudGrid Class="px-5" Spacing="1" Justify="Justify.Center">
