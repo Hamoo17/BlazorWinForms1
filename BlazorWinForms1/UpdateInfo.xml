@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <item>
 	<version>1.0.0.0</version>
-	<url>https://github.com/Hamoo17/BlazorWinForms1/blob/main/BlazorWinForms1/POS.rar</url>
+	<url>https://github.com/Hamoo17/BlazorWinForms1/raw/main/BlazorWinForms1/POS.zip</url>
 	<changelog>https://github.com/ravibpatel/AutoUpdater.NET/releases</changelog>
 	<mandatory>false</mandatory>
 </item>
