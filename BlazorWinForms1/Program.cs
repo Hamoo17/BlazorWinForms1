@@ -10,23 +10,23 @@ namespace BlazorWinForms1
         [STAThread]
         static void Main()
         {
-            AutoUpdater.Start();
+            AutoUpdater.Start("https://raw.githubusercontent.com/Hamoo17/BlazorWinForms1/main/BlazorWinForms1/UpdateInfo.xml");
 
             // ApplicationConfiguration.Initialize();
-            
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Form1 frm = new Form1();
             Startup._form1 = frm;
             Startup.Init();
-            List<string> url = new List<string>(); 
+            List<string> url = new List<string>();
 
-   
+
 
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.Run(frm);
-         
-          
+
+
 
 
         }
