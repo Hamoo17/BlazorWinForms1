@@ -1,0 +1,37 @@
+@page "/counter"
+@inject Form1 frm
+<h1>Counter</h1>
+<h6>Height: @Height</h6>
+<h6>Width: @Width</h6>
+<div>
+	<p>The current count is: @currentCount</p>
+	<button class="btn btn-primary" @onclick="IncrementCount">Count</button>
+	<a href="/page2">Redirect</a>
+</div>
+ 
+@code {
+	 
+	int currentCount = 0;
+	public int Width { get; set; } = 0;
+	public int Height { get; set; }= 0;
+	void IncrementCount()
+	{
+		currentCount++;
+		//frm.Size.Width = 200;
+		//frm.Height = 200;
+
+	}
+	protected override Task OnInitializedAsync()
+	{
+		Width = frm.Width;
+		Height = frm.Height;
+		 
+		frm.Resize += (s, e) =>
+		{
+			Width = frm.Width;
+			Height = frm.Height;
+			StateHasChanged();
+		};
+		return base.OnInitializedAsync();
+	}
+}

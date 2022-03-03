@@ -1,0 +1,44 @@
+﻿<MudNumericField HideSpinButtons="true" MaxLength="@MaxLenght" Adornment="@Adornment"
+                 AdornmentColor="@AdornmentColor" AdornmentText="@AdornmentText"
+                 Clearable="true" @bind-Value="Value" @bind-Value:event="ValueChanged" Label="@Label" HelperText="@HelperText"></MudNumericField>
+
+@code {
+
+
+    [Parameter] public EventCallback SearchFunction { get; set; }
+    [Parameter] public string Label { get; set; } = "";
+    [Parameter] public string HelperText { get; set; } = "(Optional)";
+    [Parameter] public int MaxLenght { get; set; } = 524288;
+    [Parameter] public Adornment Adornment { get; set; } = Adornment.None;
+    [Parameter] public Color AdornmentColor { get; set; } = Color.Primary;
+    [Parameter] public string AdornmentText { get; set; } = null;
+    private int? _value;
+
+    [Parameter]
+    public int? Value
+    {
+        get => _value;
+        set
+        {
+            if (_value == value) return;
+            _value = value;
+            ValueChanged.InvokeAsync(value);
+        }
+    }
+
+    [Parameter]
+    public EventCallback<int?> ValueChanged { get; set; }
+    void HandleIntervalElapsed(string debouncedText)
+    {
+
+    }
+    private async Task Search(KeyboardEventArgs e)
+    {
+        if (e.Code == "Enter" || e.Code == "NumpadEnter")
+        {
+            StateHasChanged();
+            await SearchFunction.InvokeAsync();
+
+        }
+    }
+}

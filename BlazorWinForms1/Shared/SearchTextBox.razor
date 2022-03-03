@@ -1,0 +1,40 @@
+﻿<MudTextField  MaxLength="@MaxLenght" InputType="InputType" Clearable="true" @bind-Value="Value" @bind-Value:event="ValueChanged" Label="@Label" HelperText="@HelperText"></MudTextField>
+
+@code {
+    MudTextField<string> Box;
+    [Parameter] public InputType InputType { get; set; } = InputType.Text;
+    [Parameter] public EventCallback SearchFunction { get; set; }
+    [Parameter] public string Label { get; set; } = "";
+    [Parameter] public string HelperText { get; set; } = "(Optional)";
+    [Parameter] public int MaxLenght { get; set; } = 524288;
+
+    private string _value;
+
+    [Parameter]
+    public string Value
+    {
+        get => _value;
+        set
+        {
+            if (_value == value) return;
+            _value = value;
+            ValueChanged.InvokeAsync(value);
+        }
+    }
+
+    [Parameter]
+    public EventCallback<string> ValueChanged { get; set; }
+    void HandleIntervalElapsed(string debouncedText)
+    {
+        // at this stage, interval has elapsed
+    }
+    private async Task Search(KeyboardEventArgs e)
+    {
+        if (e.Code == "Enter" || e.Code == "NumpadEnter")
+        {
+            StateHasChanged();
+            await SearchFunction.InvokeAsync();
+
+        }
+    }
+}

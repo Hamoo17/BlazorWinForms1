@@ -1,0 +1,35 @@
+﻿@page "/page2"
+@using Microsoft.Extensions.Configuration
+@inject ISnackbar _snackbar
+@inject IConfiguration conf
+@inject NavigationManager _navMnger
+<MudButton OnClick="OnCkickMsg">Message</MudButton>
+<MudButton OnClick="goPage3">Page 3</MudButton>
+ 
+<h1>Connection String @ConnectionString</h1>
+@code {
+    public string ConnectionString { get; set; }
+    private void goPage3()
+    {
+        _navMnger.NavigateTo("/page3");
+
+    }
+    private void OnCkickMsg()
+    {
+        _snackbar.Add("Test", Severity.Success ,(s)=>
+        {
+            s.ShowTransitionDuration = 100;
+            s.HideTransitionDuration = 1500;
+            s.BackgroundBlurred = true;
+            s.VisibleStateDuration = 2000;
+            s.SnackbarVariant = Variant.Text;
+            
+        });
+
+    }
+    protected override Task OnInitializedAsync()
+    {
+        ConnectionString = conf.GetConnectionString("DefaultConnection");
+        return base.OnInitializedAsync();
+    }
+}

@@ -1,0 +1,39 @@
+﻿<MudButton Size="@Size" OnClick="@OnClick" IconColor="@IconColor" FullWidth="@FullWidth" Style="@Style" Class="@Class" Variant="@Variant" EndIcon="@EndIcon" StartIcon="@StartIcon" ButtonType="@ButtonType" Disabled="@(IsProcessing)" Color="@Color">
+    @if (IsProcessing)
+    {
+        <MudProgressCircular Class="ms-n1" Size="@ProgressSize" Indeterminate="true" />
+        <MudText Class="ms-2">@WaitingText</MudText>
+    }
+    else
+    {
+        <MudText>@Text</MudText>
+    }
+</MudButton>
+
+@code {
+    [Parameter] public Size ProgressSize { get; set; } = Size.Small;
+    [Parameter] public string WaitingText { get; set; } = "Saving";
+    [Parameter]
+    public bool IsProcessing { get; set; } = false;
+    [Parameter]
+    public bool FullWidth { get; set; } = false;
+    [Parameter]
+    public string Text { get; set; } = "Save";
+    [Parameter]
+    public Variant Variant { get; set; } = Variant.Text;
+    [Parameter] public Color Color { get; set; } = Color.Inherit;
+    [Parameter]
+    public string StartIcon { get; set; } = "";
+    [Parameter]
+    public string EndIcon { get; set; } = "";
+    [Parameter]
+    public string Class { get; set; } = "";
+    [Parameter]
+    public string Style { get; set; } = "";
+    [Parameter] public Color IconColor { get; set; } = Color.Inherit;
+    [Parameter] public Size Size { get; set; } = Size.Medium;
+    [Parameter] public EventCallback<Microsoft.AspNetCore.Components.Web.MouseEventArgs> OnClick { get; set; }
+    [Parameter] public ButtonType ButtonType { get; set; } = ButtonType.Submit;
+
+
+}

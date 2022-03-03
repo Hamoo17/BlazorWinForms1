@@ -1,0 +1,15 @@
+﻿@using Microsoft.Extensions.Hosting
+@inject NavigationManager nav
+ @inject HostBuilderContext cont
+<MudNavMenu>
+    <MudNavLink Href="/" Match="NavLinkMatch.All">Dashboard</MudNavLink>
+    <MudNavLink Href="#" Match="NavLinkMatch.Prefix">Servers</MudNavLink>
+    <MudNavGroup Title="Settings" Expanded="true">
+        <MudNavLink Href="/managerPage"  Match="NavLinkMatch.Prefix">Manager</MudNavLink>
+        <MudNavLink Href="http://lowcalories.ae:50/"  Match="NavLinkMatch.Prefix">LowCalories Dashboard</MudNavLink>
+    </MudNavGroup>
+    <MudNavLink Href="/whatsapp" Match="NavLinkMatch.Prefix">About</MudNavLink>
+</MudNavMenu>
+@code {
+ 
+}

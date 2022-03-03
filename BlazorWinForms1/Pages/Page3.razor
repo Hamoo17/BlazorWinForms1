@@ -1,0 +1,32 @@
+﻿@page "/page3"
+
+@inject HttpClient client
+
+@if (wther != null)
+{
+    <MudTable Items="wther">
+     <HeaderContent>
+        <MudTh>Date</MudTh>
+        <MudTh>Summary</MudTh>
+        <MudTh>TemperatureC</MudTh>
+        <MudTh>TemperatureF</MudTh>
+    </HeaderContent>
+    <RowTemplate>
+        <MudTd DataLabel="ID" onclick="OnCkickMsg">@context.Date</MudTd>
+        <MudTd DataLabel="Name">@context.Summary</MudTd>
+        <MudTd DataLabel="Name">@context.TemperatureC</MudTd>
+        <MudTd DataLabel="Name">@context.TemperatureF</MudTd>
+    </RowTemplate>
+</MudTable>
+ 
+}
+
+@code {
+    public List<WeatherForecast> wther { get; set; } = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        wther = await client.GetFromJsonAsync<List<WeatherForecast>>("https://localhost:5001/WeatherForecast/");
+        //return base.OnInitializedAsync();
+    }
+}
