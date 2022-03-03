@@ -8,7 +8,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <RootNamespace>BlazorWinForms1</RootNamespace>
         <Version>1.0.0</Version>
-        <AssemblyVersion>0.0.1.0</AssemblyVersion>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
     </PropertyGroup>
 
     <ItemGroup>
