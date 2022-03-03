@@ -1,3 +1,4 @@
+using AutoUpdaterDotNET;
 using Microsoft.AspNetCore.Components.WebView.WindowsForms;
 using System.Runtime.InteropServices;
 
@@ -13,10 +14,15 @@ namespace BlazorWinForms1
             InitializeComponent();
             this.DoubleBuffered = true;
             this.SetStyle(ControlStyles.ResizeRedraw, true);
-           
+            AutoUpdater.ApplicationExitEvent += AutoUpdater_ApplicationExitEvent;
 
         }
-
+        private void AutoUpdater_ApplicationExitEvent()
+        {
+            Text = @"Closing application...";
+            Thread.Sleep(5000);
+            Application.Exit();
+        }
         private const int cGrip = 16;
         private const int cCaption =  32;
         protected override void WndProc(ref Message m)
@@ -60,6 +66,8 @@ namespace BlazorWinForms1
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            AutoUpdater.Start("https://raw.githubusercontent.com/Hamoo17/BlazorWinForms1/main/BlazorWinForms1/UpdateInfo.xml");
+            AutoUpdater.InstallationPath = Application.StartupPath;
             blazor = new BlazorWebView()
             {
                 Dock = DockStyle.Fill,

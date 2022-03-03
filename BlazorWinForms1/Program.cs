@@ -10,7 +10,10 @@ namespace BlazorWinForms1
         [STAThread]
         static void Main()
         {
-            AutoUpdater.Start("https://raw.githubusercontent.com/Hamoo17/BlazorWinForms1/main/BlazorWinForms1/UpdateInfo.xml");
+
+           
+
+           
 
             // ApplicationConfiguration.Initialize();
 
